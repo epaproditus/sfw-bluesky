@@ -34,7 +34,7 @@ Start by forking this repository to your own GitHub account or clone it directly
 For best results, set the following environment variables in your Vercel project settings:
 
 ```
-NODE_VERSION=16.x
+NODE_VERSION=18.x
 ```
 
 ### Step 4: Deploy
@@ -77,7 +77,7 @@ The key modifications are in:
 
 If you encounter build issues on Vercel:
 
-1. Make sure you're using Node.js 16.x
+1. Make sure you're using Node.js 18.x (specified in package.json)
 2. Check that your repository has all the necessary files
 3. Verify that the build script has proper permissions
 
