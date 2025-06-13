@@ -47,9 +47,15 @@ echo "Attempting to build Bluesky client..."
   cp -f custom-files/ContentHider.tsx temp-social-app/src/components/moderation/ && \
   cp -f custom-files/moderation-opts.tsx temp-social-app/src/state/preferences/ && \
   
-  # Build web client
+  # Convert link: dependencies to file: dependencies
   cd temp-social-app/bskyweb && \
-  npm install --legacy-peer-deps --force && \
+  npm install -g json && \
+  json -I -f package.json -e 'this.dependencies = this.dependencies || {}; Object.keys(this.dependencies).forEach(dep => { if (this.dependencies[dep].startsWith("link:")) { this.dependencies[dep] = this.dependencies[dep].replace("link:", "file:") } })' && \
+  
+  # Install dependencies
+  npm install --legacy-peer-deps --force --install-links && \
+  
+  # Build web client
   npm run build && \
   cd ../.. && \
   
@@ -57,7 +63,6 @@ echo "Attempting to build Bluesky client..."
   cp -r temp-social-app/bskyweb/build/* public/
 } || {
   echo "Warning: Build encountered issues. Using fallback content."
-  # The fallback content we created earlier will still be used
 }
 
 echo ""
