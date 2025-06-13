@@ -1,24 +1,16 @@
 {
-  "framework": null,
-  "buildCommand": "npm run build-web",
-  "outputDirectory": "bskyweb/build",
-  "installCommand": "npm install",
-  "trailingSlash": false,
-  "headers": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" }
-      ]
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["custom-files/**"],
+        "distDir": "bskyweb/build"
+      }
     }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "github": {
-    "silent": false,
-    "autoJobCancelation": true
-  }
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }
