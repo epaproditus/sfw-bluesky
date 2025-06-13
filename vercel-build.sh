@@ -34,9 +34,9 @@ cd temp-social-app/bskyweb
 echo "Directory structure:"
 ls -la
 
-# Install dependencies
+# Install dependencies with legacy peer deps to handle React version conflicts
 echo "Installing web dependencies..."
-npm install
+npm install --legacy-peer-deps
 
 # Build the web version
 echo "Building web client..."
