@@ -1,37 +1,52 @@
-# SFW Bluesky
+# SFW Bluesky Client
 
-A modified Bluesky client with enforced NSFW content filtering. This repository contains the customized code that ensures NSFW content is always filtered without any user override options.
+This is a modified version of the Bluesky client with enforced NSFW content filtering. The modification ensures that NSFW content is always hidden, regardless of user preferences.
 
-## Purpose
+## How It Works
 
-This project provides a safer browsing experience on Bluesky by enforcing content filtering. It's designed to connect to the standard Bluesky API but present a filtered view that hides inappropriate content.
+This repository contains custom modifications to the official Bluesky client that:
 
-## Key Features
-
-- Enforced NSFW content filtering with no override options
-- Compatible with standard Bluesky infrastructure
-- Can be deployed to free hosting platforms like Vercel
-- No need for custom server infrastructure
-
-## Implementation
-
-This is achieved through several strategic modifications to the official Bluesky client code:
-
-1. Hard-coded moderation preferences that always hide NSFW content
-2. Removal of UI toggles for content filtering settings
-3. API-level safeguards to prevent preference changes
-4. Enhanced content hiding to prevent revealing filtered content
+1. Override user preferences to always hide NSFW content
+2. Modify the ContentHider component to hide adult content
+3. Remove options to show NSFW content in the preferences UI
 
 ## Deployment
 
-This repository is designed to be deployed directly to Vercel:
+### Vercel Deployment
 
-1. Connect this repository to Vercel
-2. Use default build settings
-3. Deploy
+This repository is configured for easy deployment on Vercel:
 
-No additional configuration is needed.
+1. Fork this repository
+2. Connect your fork to Vercel
+3. Deploy with default settings
 
-## Credits
+The build process will:
+- Clone the official Bluesky client repository
+- Apply our custom modifications
+- Build the web version
 
-Based on the [Bluesky Social App](https://github.com/bluesky-social/social-app) with custom modifications for content filtering.
+### Local Development
+
+To develop locally:
+
+```bash
+# Clone this repository
+git clone https://github.com/epaproditus/sfw-bluesky.git
+cd sfw-bluesky
+
+# Install dependencies and build
+npm install
+npm run build
+```
+
+## Modified Files
+
+The key modifications are in:
+
+- `src/customization/hard-coded-prefs.ts` - Forces NSFW filtering preferences
+- `src/components/moderation/ContentHider.tsx` - Ensures content hiding works as expected
+- `src/state/preferences/moderation-opts.tsx` - Removes NSFW toggle options
+
+## License
+
+This project is licensed under the MIT License, consistent with the original Bluesky client.
