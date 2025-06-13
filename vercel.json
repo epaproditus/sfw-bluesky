@@ -1,0 +1,28 @@
+{
+  "framework": null,
+  "buildCommand": "yarn && yarn build-web",
+  "outputDirectory": "bskyweb/build",
+  "installCommand": "yarn install",
+  "devCommand": "cd bskyweb && yarn serve",
+  "regions": ["sfo1"],
+  "builds": [
+    { "src": "bskyweb/build/**/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/bskyweb/build/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ],
+  "github": {
+    "silent": false,
+    "autoJobCancelation": true
+  }
+}
