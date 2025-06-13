@@ -1,9 +1,8 @@
 {
   "framework": null,
-  "buildCommand": "yarn && yarn build-web",
+  "buildCommand": "npm run build-web",
   "outputDirectory": "bskyweb/build",
-  "installCommand": "yarn install",
-  "devCommand": "cd bskyweb && yarn serve",
+  "installCommand": "npm install",
   "trailingSlash": false,
   "headers": [
     {
