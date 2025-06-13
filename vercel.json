@@ -1,9 +1,13 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "bskyweb/build",
+  "installCommand": "npm install",
+  "framework": null,
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node",
+      "use": "@vercel/static-build",
       "config": {
         "includeFiles": ["custom-files/**"],
         "distDir": "bskyweb/build"
@@ -11,6 +15,7 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/" }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
