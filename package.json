@@ -4,11 +4,7 @@
   "description": "A modified Bluesky client with enforced NSFW content filtering",
   "private": true,
   "scripts": {
-    "prepare": "git clone --depth=1 https://github.com/bluesky-social/social-app.git temp-social-app",
-    "postprepare": "mkdir -p temp-social-app/src/customization temp-social-app/src/components/moderation temp-social-app/src/state/preferences",
-    "apply-changes": "cp -f custom-files/hard-coded-prefs.ts temp-social-app/src/customization/ && cp -f custom-files/ContentHider.tsx temp-social-app/src/components/moderation/ && cp -f custom-files/moderation-opts.tsx temp-social-app/src/state/preferences/",
-    "build": "npm run prepare && npm run postprepare && npm run apply-changes && cd temp-social-app/bskyweb && npm install && npm run build",
-    "postbuild": "mkdir -p public && cp -r temp-social-app/bskyweb/build/* public/"
+    "build": "chmod +x ./vercel-build.sh && ./vercel-build.sh"
   },
   "repository": {
     "type": "git",
