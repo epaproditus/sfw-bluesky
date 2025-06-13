@@ -7,7 +7,7 @@
     "prepare": "git clone --depth=1 https://github.com/bluesky-social/social-app.git temp-social-app && cp -R temp-social-app/* . || true",
     "postprepare": "rm -rf temp-social-app && mkdir -p src/customization src/components/moderation src/state/preferences",
     "apply-changes": "cp -f custom-files/hard-coded-prefs.ts src/customization/ && cp -f custom-files/ContentHider.tsx src/components/moderation/ && cp -f custom-files/moderation-opts.tsx src/state/preferences/",
-    "build": "npm run prepare && npm run postprepare && npm run apply-changes && cd bskyweb && npm install && npm run build"
+    "build": "npm run prepare && npm run postprepare && npm run apply-changes && cd bskyweb && npm install && npm run build-web"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "expo-cli": "^6.3.10"
   },
   "dependencies": {}
 }
