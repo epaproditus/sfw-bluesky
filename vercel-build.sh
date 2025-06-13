@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 echo "SFW Bluesky - Vercel Build Script"
 echo "=============================="
@@ -29,6 +29,10 @@ cp -f custom-files/moderation-opts.tsx temp-social-app/src/state/preferences/
 # Enter the web directory
 echo "Step 4: Building web version..."
 cd temp-social-app/bskyweb
+
+# List directory contents
+echo "Directory structure:"
+ls -la
 
 # Install dependencies
 echo "Installing web dependencies..."
