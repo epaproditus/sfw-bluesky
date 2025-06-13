@@ -4,13 +4,7 @@
   "outputDirectory": "bskyweb/build",
   "installCommand": "yarn install",
   "devCommand": "cd bskyweb && yarn serve",
-  "regions": ["sfo1"],
-  "builds": [
-    { "src": "bskyweb/build/**/*", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/bskyweb/build/$1" }
-  ],
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
@@ -20,6 +14,9 @@
         { "key": "X-XSS-Protection", "value": "1; mode=block" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "github": {
     "silent": false,
