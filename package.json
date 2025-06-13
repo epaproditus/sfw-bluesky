@@ -4,10 +4,10 @@
   "description": "A modified Bluesky client with enforced NSFW content filtering",
   "private": true,
   "scripts": {
-    "prepare": "git clone --depth=1 https://github.com/bluesky-social/social-app.git temp-social-app && mv temp-social-app/* . && rm -rf temp-social-app",
+    "prepare": "git clone --depth=1 https://github.com/bluesky-social/social-app.git temp-social-app && cp -R temp-social-app/* . || true",
+    "postprepare": "rm -rf temp-social-app",
     "apply-changes": "mkdir -p src/customization && cp -f custom-files/hard-coded-prefs.ts src/customization/ && cp -f custom-files/ContentHider.tsx src/components/moderation/ && cp -f custom-files/moderation-opts.tsx src/state/preferences/",
-    "setup": "yarn run prepare && yarn run apply-changes",
-    "build-web": "yarn setup && yarn && cd bskyweb && yarn build"
+    "build": "yarn && yarn apply-changes && cd bskyweb && yarn build"
   },
   "repository": {
     "type": "git",
